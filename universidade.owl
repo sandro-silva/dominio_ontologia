@@ -1,0 +1,413 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/sandr/ontologies/2026/9/universidade/"
+     xml:base="http://www.semanticweb.org/sandr/ontologies/2026/9/universidade/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:universidade="http://exemplo.org/universidade#">
+    <owl:Ontology rdf:about="http://exemplo.org/universidade">
+        <rdfs:comment>Ontologia da estrutura acadêmica de uma universidade. Modela pessoas (alunos e professores), cursos, disciplinas e departamentos. Perguntas de competência: quais disciplinas um professor leciona; quais alunos cursam uma disciplina; a qual departamento pertence um curso; quais disciplinas compõem um curso.</rdfs:comment>
+        <rdfs:comment>Termos principais: Pessoa, Aluno, Professor, Curso, Disciplina, Departamento.</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://exemplo.org/universidade#cursa -->
+
+    <owl:ObjectProperty rdf:about="http://exemplo.org/universidade#cursa">
+        <owl:inverseOf rdf:resource="http://exemplo.org/universidade#ehCursadaPor"/>
+        <rdfs:domain rdf:resource="http://exemplo.org/universidade#Aluno"/>
+        <rdfs:range rdf:resource="http://exemplo.org/universidade#Disciplina"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://exemplo.org/universidade#ehCursadaPor -->
+
+    <owl:ObjectProperty rdf:about="http://exemplo.org/universidade#ehCursadaPor"/>
+    
+
+
+    <!-- http://exemplo.org/universidade#ehLecionadaPor -->
+
+    <owl:ObjectProperty rdf:about="http://exemplo.org/universidade#ehLecionadaPor">
+        <owl:inverseOf rdf:resource="http://exemplo.org/universidade#leciona"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://exemplo.org/universidade#leciona -->
+
+    <owl:ObjectProperty rdf:about="http://exemplo.org/universidade#leciona">
+        <rdfs:domain rdf:resource="http://exemplo.org/universidade#Professor"/>
+        <rdfs:range rdf:resource="http://exemplo.org/universidade#Disciplina"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://exemplo.org/universidade#pertenceA -->
+
+    <owl:ObjectProperty rdf:about="http://exemplo.org/universidade#pertenceA">
+        <owl:inverseOf rdf:resource="http://exemplo.org/universidade#temCurso"/>
+        <rdfs:domain rdf:resource="http://exemplo.org/universidade#Curso"/>
+        <rdfs:range rdf:resource="http://exemplo.org/universidade#Departamento"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://exemplo.org/universidade#pertenceAoCurso -->
+
+    <owl:ObjectProperty rdf:about="http://exemplo.org/universidade#pertenceAoCurso">
+        <owl:inverseOf rdf:resource="http://exemplo.org/universidade#temDisciplina"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://exemplo.org/universidade#temCurso -->
+
+    <owl:ObjectProperty rdf:about="http://exemplo.org/universidade#temCurso">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://exemplo.org/universidade#temDisciplina -->
+
+    <owl:ObjectProperty rdf:about="http://exemplo.org/universidade#temDisciplina">
+        <rdfs:domain rdf:resource="http://exemplo.org/universidade#Curso"/>
+        <rdfs:range rdf:resource="http://exemplo.org/universidade#Disciplina"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://exemplo.org/universidade#cargaHoraria -->
+
+    <owl:DatatypeProperty rdf:about="http://exemplo.org/universidade#cargaHoraria">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://exemplo.org/universidade#Disciplina"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://exemplo.org/universidade#email -->
+
+    <owl:DatatypeProperty rdf:about="http://exemplo.org/universidade#email">
+        <rdfs:domain rdf:resource="http://exemplo.org/universidade#Pessoa"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://exemplo.org/universidade#matricula -->
+
+    <owl:DatatypeProperty rdf:about="http://exemplo.org/universidade#matricula">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://exemplo.org/universidade#Aluno"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://exemplo.org/universidade#nome -->
+
+    <owl:DatatypeProperty rdf:about="http://exemplo.org/universidade#nome">
+        <rdfs:domain rdf:resource="http://exemplo.org/universidade#Pessoa"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://exemplo.org/universidade#Aluno -->
+
+    <owl:Class rdf:about="http://exemplo.org/universidade#Aluno">
+        <rdfs:subClassOf rdf:resource="http://exemplo.org/universidade#Pessoa"/>
+        <owl:disjointWith rdf:resource="http://exemplo.org/universidade#Professor"/>
+    </owl:Class>
+    
+
+
+    <!-- http://exemplo.org/universidade#Curso -->
+
+    <owl:Class rdf:about="http://exemplo.org/universidade#Curso">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://exemplo.org/universidade#pertenceA"/>
+                <owl:someValuesFrom rdf:resource="http://exemplo.org/universidade#Departamento"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://exemplo.org/universidade#Departamento -->
+
+    <owl:Class rdf:about="http://exemplo.org/universidade#Departamento"/>
+    
+
+
+    <!-- http://exemplo.org/universidade#Disciplina -->
+
+    <owl:Class rdf:about="http://exemplo.org/universidade#Disciplina">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://exemplo.org/universidade#ehLecionadaPor"/>
+                <owl:someValuesFrom rdf:resource="http://exemplo.org/universidade#Professor"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://exemplo.org/universidade#Graduacao -->
+
+    <owl:Class rdf:about="http://exemplo.org/universidade#Graduacao">
+        <rdfs:subClassOf rdf:resource="http://exemplo.org/universidade#Aluno"/>
+        <owl:disjointWith rdf:resource="http://exemplo.org/universidade#PosGraduacao"/>
+    </owl:Class>
+    
+
+
+    <!-- http://exemplo.org/universidade#Pessoa -->
+
+    <owl:Class rdf:about="http://exemplo.org/universidade#Pessoa"/>
+    
+
+
+    <!-- http://exemplo.org/universidade#PosGraduacao -->
+
+    <owl:Class rdf:about="http://exemplo.org/universidade#PosGraduacao">
+        <rdfs:subClassOf rdf:resource="http://exemplo.org/universidade#Aluno"/>
+    </owl:Class>
+    
+
+
+    <!-- http://exemplo.org/universidade#Professor -->
+
+    <owl:Class rdf:about="http://exemplo.org/universidade#Professor">
+        <rdfs:subClassOf rdf:resource="http://exemplo.org/universidade#Pessoa"/>
+    </owl:Class>
+    
+
+
+    <!-- http://exemplo.org/universidade#ProfessorDeDisciplina -->
+
+    <owl:Class rdf:about="http://exemplo.org/universidade#ProfessorDeDisciplina">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://exemplo.org/universidade#Professor"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://exemplo.org/universidade#leciona"/>
+                        <owl:someValuesFrom rdf:resource="http://exemplo.org/universidade#Disciplina"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://exemplo.org/universidade#Professor"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://exemplo.org/universidade#Algoritmos -->
+
+    <owl:NamedIndividual rdf:about="http://exemplo.org/universidade#Algoritmos">
+        <rdf:type rdf:resource="http://exemplo.org/universidade#Disciplina"/>
+        <universidade:cargaHoraria rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">80</universidade:cargaHoraria>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://exemplo.org/universidade#BancoDeDados -->
+
+    <owl:NamedIndividual rdf:about="http://exemplo.org/universidade#BancoDeDados">
+        <rdf:type rdf:resource="http://exemplo.org/universidade#Disciplina"/>
+        <universidade:cargaHoraria rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">60</universidade:cargaHoraria>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://exemplo.org/universidade#Calculo1 -->
+
+    <owl:NamedIndividual rdf:about="http://exemplo.org/universidade#Calculo1">
+        <rdf:type rdf:resource="http://exemplo.org/universidade#Disciplina"/>
+        <universidade:cargaHoraria rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">90</universidade:cargaHoraria>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://exemplo.org/universidade#CienciaDaComputacao -->
+
+    <owl:NamedIndividual rdf:about="http://exemplo.org/universidade#CienciaDaComputacao">
+        <rdf:type rdf:resource="http://exemplo.org/universidade#Curso"/>
+        <universidade:pertenceA rdf:resource="http://exemplo.org/universidade#DepComputacao"/>
+        <universidade:temDisciplina rdf:resource="http://exemplo.org/universidade#Algoritmos"/>
+        <universidade:temDisciplina rdf:resource="http://exemplo.org/universidade#BancoDeDados"/>
+        <universidade:temDisciplina rdf:resource="http://exemplo.org/universidade#Calculo1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://exemplo.org/universidade#DepComputacao -->
+
+    <owl:NamedIndividual rdf:about="http://exemplo.org/universidade#DepComputacao">
+        <rdf:type rdf:resource="http://exemplo.org/universidade#Departamento"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://exemplo.org/universidade#DepMatematica -->
+
+    <owl:NamedIndividual rdf:about="http://exemplo.org/universidade#DepMatematica">
+        <rdf:type rdf:resource="http://exemplo.org/universidade#Departamento"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://exemplo.org/universidade#Joao -->
+
+    <owl:NamedIndividual rdf:about="http://exemplo.org/universidade#Joao">
+        <rdf:type rdf:resource="http://exemplo.org/universidade#Graduacao"/>
+        <universidade:cursa rdf:resource="http://exemplo.org/universidade#Algoritmos"/>
+        <universidade:matricula>2026002</universidade:matricula>
+        <universidade:nome>Joao Marcos</universidade:nome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://exemplo.org/universidade#Lucas -->
+
+    <owl:NamedIndividual rdf:about="http://exemplo.org/universidade#Lucas">
+        <rdf:type rdf:resource="http://exemplo.org/universidade#PosGraduacao"/>
+        <universidade:cursa rdf:resource="http://exemplo.org/universidade#BancoDeDados"/>
+        <universidade:matricula>2026003</universidade:matricula>
+        <universidade:nome>Lucas Gabriel</universidade:nome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://exemplo.org/universidade#Maria -->
+
+    <owl:NamedIndividual rdf:about="http://exemplo.org/universidade#Maria">
+        <rdf:type rdf:resource="http://exemplo.org/universidade#Graduacao"/>
+        <universidade:cursa rdf:resource="http://exemplo.org/universidade#Algoritmos"/>
+        <universidade:cursa rdf:resource="http://exemplo.org/universidade#BancoDeDados"/>
+        <universidade:matricula>2026001</universidade:matricula>
+        <universidade:nome>Maria Oliveira</universidade:nome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://exemplo.org/universidade#ProfAna -->
+
+    <owl:NamedIndividual rdf:about="http://exemplo.org/universidade#ProfAna">
+        <rdf:type rdf:resource="http://exemplo.org/universidade#Professor"/>
+        <universidade:leciona rdf:resource="http://exemplo.org/universidade#Calculo1"/>
+        <universidade:email>ana@universidade.gov.br</universidade:email>
+        <universidade:nome>Ana Souza</universidade:nome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://exemplo.org/universidade#ProfBeatriz -->
+
+    <owl:NamedIndividual rdf:about="http://exemplo.org/universidade#ProfBeatriz">
+        <rdf:type rdf:resource="http://exemplo.org/universidade#Professor"/>
+        <universidade:email>beatriz@universidade.gov.br</universidade:email>
+        <universidade:nome>Beatriz Lima</universidade:nome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://exemplo.org/universidade#ProfCarlos -->
+
+    <owl:NamedIndividual rdf:about="http://exemplo.org/universidade#ProfCarlos">
+        <rdf:type rdf:resource="http://exemplo.org/universidade#Professor"/>
+        <universidade:leciona rdf:resource="http://exemplo.org/universidade#Algoritmos"/>
+        <universidade:leciona rdf:resource="http://exemplo.org/universidade#BancoDeDados"/>
+        <universidade:email>carlos@universidade.gov.br</universidade:email>
+        <universidade:nome>Carlos Silva</universidade:nome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://exemplo.org/universidade#SistemasDeInformacao -->
+
+    <owl:NamedIndividual rdf:about="http://exemplo.org/universidade#SistemasDeInformacao">
+        <rdf:type rdf:resource="http://exemplo.org/universidade#Curso"/>
+        <universidade:pertenceA rdf:resource="http://exemplo.org/universidade#DepComputacao"/>
+        <universidade:temDisciplina rdf:resource="http://exemplo.org/universidade#Algoritmos"/>
+        <universidade:temDisciplina rdf:resource="http://exemplo.org/universidade#BancoDeDados"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://exemplo.org/universidade#Curso"/>
+            <rdf:Description rdf:about="http://exemplo.org/universidade#Departamento"/>
+            <rdf:Description rdf:about="http://exemplo.org/universidade#Disciplina"/>
+            <rdf:Description rdf:about="http://exemplo.org/universidade#Pessoa"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+
